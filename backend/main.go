@@ -1,25 +1,21 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"net/http"
+
+	"github.com/Deepankar20/shinra/backend/db"
+	"github.com/Deepankar20/shinra/backend/router"
 )
 
 func main() {
-	server := &http.Server{
-		Addr: ":3000",
-		Handler: http.HandlerFunc(basicHandler),
-	}
+	database, _ := db.InitDB()
 
-	err := server.ListenAndServe()
+	r := router.NewRouter(database)
 
+	log.Println("Server running on :3000")
+	err := http.ListenAndServe(":3000", r)
 	if err != nil {
-		fmt.Println("Server connection failed")
+		log.Fatal("Server failed:", err)
 	}
-}
-
-func basicHandler(w http.ResponseWriter, r *http.Request) {
-
-	w.Write([]byte("Server running"))
-
 }

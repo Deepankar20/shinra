@@ -20,5 +20,7 @@ func NewRouter(db *gorm.DB) *chi.Mux {
 		handler.AuthHandler(r, db)
 	})
 
+	
+
 	return r
 }

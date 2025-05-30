@@ -8,4 +8,4 @@ type Trade struct {
     Prediction string  // e.g., 'yes' or 'no'
     Status     string  `gorm:"default:'pending'"` // e.g., 'pending', 'won', 'lost'
     Result     string  // e.g., 'yes', 'no', 'pending'
-}
+} 
